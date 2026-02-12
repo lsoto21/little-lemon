@@ -1,7 +1,7 @@
 export const Footer = () => {
     return (
         <footer style={styles.footer}>
-            <img src={require("./assets/logo2.png")} alt="Little Lemon Logo" style={{ width: "25%", alignSelf: "center" }} />
+            <img src={require("./assets/logo2.png")} alt="Little Lemon Logo" style={{ width: "20%", alignSelf: "center" }} />
             <div style={styles.footerSection}>
                 <h4>Web Navigation</h4>
                 <ul style={styles.ul}>
@@ -9,7 +9,6 @@ export const Footer = () => {
                     <li>About</li>
                     <li>Reservations</li>
                     <li>Menu</li>
-                    <li>Order Online</li>
                     <li>Login</li>
                 </ul>
             </div>
@@ -39,8 +38,11 @@ const styles = {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "flex-start",
+        paddingTop: "4vh",
+        paddingBottom: "4vh",
         paddingLeft: "10vw",
         paddingRight: "10vw",
+        backgroundColor: "#cfcfcf70",
     },
     footerSection: {
         width: "25%",

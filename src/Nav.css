@@ -1,0 +1,38 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1vh 10vw;
+  gap: 4vw;
+}
+
+.navSection {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 2vw;
+}
+
+.navLogo {
+  width: 20%;
+}
+
+.navLink {
+    display: inline-block;
+  text-decoration: none;
+  font-family: 'Karla', sans-serif;
+  color: #495E57;
+  font-size: 1rem;
+  transition: transform 0.2s, border-bottom 0.2s;
+  padding-bottom: 2px; /* espacio para border-bottom */
+}
+
+.navLink:hover {
+  transform: scale(1.1); /* escala solo el texto */
+  transform-origin: bottom center;
+}
+
+.navLink.active {
+  border-bottom: 2px solid #495E57; /* indica la página activa */
+}
