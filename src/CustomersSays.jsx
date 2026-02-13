@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const img = require("./assets/user_icon.png");
+
 export const CustomersSays = () => {
     const [hoverIndex, setHoverIndex] = useState(null);
 
@@ -7,22 +9,22 @@ export const CustomersSays = () => {
         {
             name: "John Doe",
             text: "Excellent food and service!",
-            img: require("./assets/logo2.png"),
+            img: img,
         },
         {
             name: "Lucas Soto",
             text: "The best Mediterranean food in Chicago!",
-            img: require("./assets/logo2.png"),
+            img: img,
         },
         {
             name: "Michael Johnson",
             text: "The service was outstanding!",
-            img: require("./assets/logo2.png"),
+            img: img,
         },
         {
             name: "Jane Smith",
             text: "The atmosphere was perfect!",
-            img: require("./assets/logo2.png"),
+            img: img,
         },
     ];
 
@@ -45,7 +47,7 @@ export const CustomersSays = () => {
                         onMouseEnter={() => setHoverIndex(index)}
                         onMouseLeave={() => setHoverIndex(null)}
                     >
-                        <h3 style={{ fontSize: "2vw" }}>Rating</h3>
+                        <h3 style={{ fontSize: "2vw", margin: "1vw 0 1vw 0" }}>Rating</h3>
                         <div style={styles.ratingUser}>
                             <img src={item.img} alt={item.name} style={{ width: "20%" }} />
                             <span>{item.name}</span>

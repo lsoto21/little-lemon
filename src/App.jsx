@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { Layout } from "./Layout";
 import { Home } from "./Home";
 import { Menu } from "./Menu";
-import { Reservations } from "./Reservations";
+import { BookingPage } from "./BookingPage";
 import { Login } from "./Login";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/menu" element={<Menu />} />
-          <Route path="/reservations" element={<Reservations />} />
+          <Route path="/reservations" element={<BookingPage />} />
           <Route path="/login" element={<Login />} />
         </Route>
       </Routes>
