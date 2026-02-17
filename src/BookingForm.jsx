@@ -6,6 +6,8 @@ export const BookingForm = ({ availableTimes, dispatch, submitForm }) => {
     const [guests, setGuests] = useState(1);
     const [occasion, setOccasion] = useState("Birthday");
 
+    const today = new Date().toISOString().split("T")[0];
+
     const handleDateChange = (e) => {
         const selectedDate = e.target.value;
         setDate(selectedDate);
@@ -19,12 +21,12 @@ export const BookingForm = ({ availableTimes, dispatch, submitForm }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!date || !time) return;
+        if (!isFormValid) return;
 
         const formData = {
             date,
             time,
-            guests,
+            guests: Number(guests),
             occasion,
         };
 
@@ -40,26 +42,37 @@ export const BookingForm = ({ availableTimes, dispatch, submitForm }) => {
 
     const timesForSelectedDate = availableTimes[date] || [];
 
+    // 🔥 Validación React
+    const isFormValid =
+        date &&
+        time &&
+        guests >= 1 &&
+        guests <= 10;
+
     return (
         <div style={styles.bookingContainer}>
             <form style={styles.form} onSubmit={handleSubmit}>
+
                 {/* Fecha */}
                 <div style={styles.row}>
-                    <label style={styles.label}>Choose date</label>
-                    <input style={styles.input}
+                    <label htmlFor="date" style={styles.label}>Choose date</label>
+                    <input
+                        id="date"
+                        style={styles.input}
                         type="date"
                         value={date}
                         onChange={handleDateChange}
                         required
+                        min={new Date().toISOString().split("T")[0]}
                     />
                 </div>
 
-
                 {/* Hora */}
-
                 <div style={styles.row}>
-                    <label style={styles.label}>Choose time</label>
-                    <select style={styles.input}
+                    <label htmlFor="time" style={styles.label}>Choose time</label>
+                    <select
+                        id="time"
+                        style={styles.input}
                         value={time}
                         onChange={(e) => setTime(e.target.value)}
                         required
@@ -67,29 +80,35 @@ export const BookingForm = ({ availableTimes, dispatch, submitForm }) => {
                     >
                         <option value="">Select a time</option>
                         {timesForSelectedDate.map((t) => (
-                            <option key={t} value={t}>
-                                {t}
-                            </option>
+                            <option key={t} value={t}>{t}</option>
                         ))}
                     </select>
                 </div>
 
+                {/* Guests */}
                 <div style={styles.row}>
-                    <label style={styles.label}>Guests</label>
-                    <input style={styles.input}
+                    <label htmlFor="guests" style={styles.label}>Guests</label>
+                    <input
+                        id="guests"
+                        style={styles.input}
                         type="number"
                         min="1"
                         max="10"
                         value={guests}
                         onChange={(e) => setGuests(e.target.value)}
+                        required
                     />
                 </div>
 
+                {/* Occasion */}
                 <div style={styles.row}>
-                    <label style={styles.label}>Occasion</label>
-                    <select style={styles.input}
+                    <label htmlFor="occasion" style={styles.label}>Occasion</label>
+                    <select
+                        id="occasion"
+                        style={styles.input}
                         value={occasion}
                         onChange={(e) => setOccasion(e.target.value)}
+                        required
                     >
                         <option>Birthday</option>
                         <option>Anniversary</option>
@@ -97,9 +116,27 @@ export const BookingForm = ({ availableTimes, dispatch, submitForm }) => {
                     </select>
                 </div>
 
-                <button type="submit" style={styles.submitButton}>Reserve</button>
+
+                {/* Submit */}
+                <button
+                    type="submit"
+                    style={{
+                        ...styles.submitButton,
+                        opacity: isFormValid ? 1 : 0.5,
+                        cursor: isFormValid ? "pointer" : "not-allowed",
+                    }}
+                    disabled={!isFormValid}  // 🔥 Botón desactivado
+                >
+                    Reserve
+                </button>
+
             </form>
-            <img src={require("./assets/restaurant.jpg")} alt="Restaurant interior" style={styles.restaurantImage} />
+
+            <img
+                src={require("./assets/restaurant.jpg")}
+                alt="Restaurant interior"
+                style={styles.restaurantImage}
+            />
         </div>
     );
 };
