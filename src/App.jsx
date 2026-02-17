@@ -4,6 +4,7 @@ import { Home } from "./Home";
 import { Menu } from "./Menu";
 import { BookingPage } from "./BookingPage";
 import { Login } from "./Login";
+import { ConfirmedBooking } from "./ConfirmedBooking";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/reservations" element={<BookingPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/confirmed" element={<ConfirmedBooking />} />
         </Route>
       </Routes>
     </div>
